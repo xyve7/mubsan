@@ -16,5 +16,5 @@ int mubsan_log(const char* format, ...) {
 
 int main() {
     int arr[4] = {1, 2, 3, 4};
-    arr[4] = 10;
+    arr[4] = 10; // This is undefined behavior, since it's accessing out of bounds. UBSAN should be triggered.
 }
