@@ -4,6 +4,8 @@ Minimal implementation of UBSAN, which can be utilized inside kernels.
 
 ## Note
 
+**I understand some of the code is a bit repetitive and an eyesore, I'm currently thinking of ways to reduce the repetitive nature of the code, while also making sure it doesn't over complicated it**
+
 This isn't complete yet, however if you want to test it, fork the repository and run:
 
 ```bash
