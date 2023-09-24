@@ -10,6 +10,25 @@ This isn't complete yet, however if you want to test it, fork the repository and
 $ make
 ```
 
+## Usage
+
+Statically link the `mubsan.c` file with your existing project.  
+Then, define a function with the following signature:
+
+```c
+int mubsan_log(const char* format, ...) {
+    // code
+}
+```
+
+This function should accepting a formatted string and print it to the screen, however, how you implement it is up to you.
+
+Running the test with the aforementioned instructions will yield this output, then exit:
+
+```bash
+mubsan: array out of bounds in test.c, line 19, column 8, 'int [4]' at 'int' 4
+```
+
 ## Credit
 
 So, finding documentation for this was pretty abysmal, so I had to utilize other implementations and using them as reference.  
