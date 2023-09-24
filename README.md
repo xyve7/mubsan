@@ -25,7 +25,7 @@ This function should accepting a formatted string and print it to the screen, ho
 
 Running the test with the aforementioned instructions will yield this output, then exit:
 
-```bash
+```
 mubsan: array out of bounds in test.c, line 19, column 8, 'int [4]' at 'int' 4
 ```
 
