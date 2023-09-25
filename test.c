@@ -12,8 +12,15 @@ int mubsan_log(const char* format, ...) {
 
     exit(1);
 }
-
+__attribute__((nonnull)) void func(int* val) {
+    (void)val;
+}
 int main() {
-    int arr[4] = {1, 2, 3, 4};
-    arr[4] = 10; // This is undefined behavior, since it's accessing out of bounds. UBSAN should be triggered.
+    _Bool* boolPtr;
+    int value = 188;
+
+    boolPtr = (_Bool*)&value; // Assign a non-zero value to a _Bool pointer
+
+    // Print the value to avoid optimization
+    printf("Bool value: %d\n", *boolPtr);
 }
