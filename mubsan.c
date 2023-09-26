@@ -76,96 +76,96 @@ void __ubsan_handle_type_mismatch_v1(mubsan_type_mismatch_info_v1* data, uintptr
         reason = "use of a misaligned pointer";
     }
 
-    mubsan_log("mubsan: %s in %s, line %u, column %u, %s type %s at alignment %u at address 0x%lx\n",
-               reason,
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: %s, %s type %s at alignment %u at address 0x%lx\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
+               reason,
                mubsan_type_check_kinds[data->check_kind],
                data->type->name,
                data->alignment,
                ptr);
 }
 void __ubsan_handle_add_overflow(mubsan_overflow* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan: addition overflow in %s, line %u, column %u, for type %s, expression %lu + %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: addition overflow, for type %s, expression %lu + %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->type->name,
                lhs,
                rhs);
 }
 void __ubsan_handle_sub_overflow(mubsan_overflow* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan: subtraction overflow in %s, line %u, column %u, for type %s, expression %lu - %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: subtraction overflow, for type %s, expression %lu - %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->type->name,
                lhs,
                rhs);
 }
 void __ubsan_handle_mul_overflow(mubsan_overflow* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan: multiplication overflow in %s, line %u, column %u, for type %s, expression %lu * %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: multiplication overflow, for type %s, expression %lu * %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->type->name,
                lhs,
                rhs);
 }
 void __ubsan_handle_negate_overflow(mubsan_overflow* data, uintptr_t val) {
-    mubsan_log("mubsan: addition overflow in %s, line %u, column %u, for type %s, value %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: negate overflow, for type %s, value %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->type->name,
                val);
 }
 void __ubsan_handle_divrem_overflow(mubsan_overflow* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan: division overflow in %s, line %u, column %u, for type %s, expression %lu / %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: divistion overflow, for type %s, expression %lu / %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->type->name,
                lhs,
                rhs);
 }
 void __ubsan_handle_pointer_overflow(mubsan_pointer_overflow* data, uintptr_t base, uintptr_t result) {
-    mubsan_log("mubsan: pointer overflow in %s, line %u, column %u, base=0x%lx, result=0x%lx\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: pointer overflow, base 0x%lx, result 0x%lx\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                base,
                result);
 }
 void __ubsan_handle_out_of_bounds(mubsan_out_of_bounds* data, uintptr_t index) {
-    mubsan_log("mubsan: array out of bounds in %s, line %u, column %u, for type %s, by index type %s %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: array out of bounds, for type %s, by index type %s %lu\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->array_type->name,
                data->index_type->name,
                index);
 }
 void __ubsan_handle_nonnull_arg(mubsan_not_null_arg* data) {
-    mubsan_log("mubsan: not-null argument is null in %s, line %u, column %u\n",
-               data->loc.file,
-               data->loc.line,
-               data->loc.col);
-}
-void __ubsan_handle_load_invalid_value(mubsan_invalid_value* data, uintptr_t val) {
-    mubsan_log("mubsan: load of invalid value in %s, line %u, column %u, for type %s, value %lu\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: not-null argument is null\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file);
+}
+void __ubsan_handle_load_invalid_value(mubsan_invalid_value* data, uintptr_t val) {
+    mubsan_log("mubsan @ line %u, column %u, file %s: load of invalid value, for type %s, value %lu\n",
+               data->loc.line,
+               data->loc.col,
+               data->loc.file,
                data->type->name,
                val);
 }
 void __ubsan_handle_shift_out_of_bounds(mubsan_shift_out_of_bounds* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan: shift out of bounds in %s, line %u, column %u, of type %s and %s\n",
-               data->loc.file,
+    mubsan_log("mubsan @ line %u, column %u, file %s: shift out of bounds, of type %s and %s\n",
                data->loc.line,
                data->loc.col,
+               data->loc.file,
                data->lhs_type->name,
                data->rhs_type->name);
 }
