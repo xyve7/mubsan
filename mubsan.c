@@ -66,7 +66,9 @@ typedef struct {
     mubsan_type_description* lhs_type;
     mubsan_type_description* rhs_type;
 } mubsan_shift_out_of_bounds;
-
+typedef struct {
+    mubsan_source_location loc;
+} mubsan_unreachable;
 void __ubsan_handle_type_mismatch_v1(mubsan_type_mismatch_info_v1* data, uintptr_t ptr) {
     const char* reason = "type mismatch";
 
@@ -168,4 +170,10 @@ void __ubsan_handle_shift_out_of_bounds(mubsan_shift_out_of_bounds* data, uintpt
                data->loc.file,
                data->lhs_type->name,
                data->rhs_type->name);
+}
+void __ubsan_handle_builtin_unreachable(mubsan_unreachable* data) {
+    mubsan_log("mubsan @ line %u, column %u, file %s: unreachable code was reached\n",
+               data->loc.line,
+               data->loc.col,
+               data->loc.file);
 }
