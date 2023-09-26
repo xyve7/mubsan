@@ -16,6 +16,10 @@ __attribute__((nonnull)) void func(int* val) {
     (void)val;
 }
 int main() {
+
+    int arr[4];
+    arr[4] = 10;
+
     _Bool* boolPtr;
     int value = 188;
 
@@ -23,4 +27,7 @@ int main() {
 
     // Print the value to avoid optimization
     printf("Bool value: %d\n", *boolPtr);
+
+    int* val = NULL;
+    int a = *val;
 }

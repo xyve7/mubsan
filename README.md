@@ -28,7 +28,7 @@ This function should accepting a formatted string and print it to the screen, ho
 Running the test with the aforementioned instructions will yield this output, then exit:
 
 ```
-mubsan: array out of bounds in test.c, line 19, column 8, 'int [4]' at 'int' 4
+mubsan @ line 21, column 8, file test.c: array out of bounds, for type 'int [4]', by index type 'int' 4
 ```
 
 ## Credit
