@@ -164,12 +164,14 @@ void __ubsan_handle_load_invalid_value(mubsan_invalid_value* data, uintptr_t val
                val);
 }
 void __ubsan_handle_shift_out_of_bounds(mubsan_shift_out_of_bounds* data, uintptr_t lhs, uintptr_t rhs) {
-    mubsan_log("mubsan @ line %u, column %u, file %s: shift out of bounds, of type %s and %s\n",
+    mubsan_log("mubsan @ line %u, column %u, file %s: shift out of bounds, of type %s and %s, value %lu and %lu\n",
                data->loc.line,
                data->loc.col,
                data->loc.file,
                data->lhs_type->name,
-               data->rhs_type->name);
+               data->rhs_type->name,
+               lhs,
+               rhs);
 }
 void __ubsan_handle_builtin_unreachable(mubsan_unreachable* data) {
     mubsan_log("mubsan @ line %u, column %u, file %s: unreachable code was reached\n",
