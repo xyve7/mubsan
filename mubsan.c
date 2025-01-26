@@ -73,9 +73,7 @@ typedef struct {
 
 typedef struct {
     mubsan_source_location loc;
-    mubsan_type_description* expected_type;
-    mubsan_type_description* actual_type;
-    void *function;
+    mubsan_type_description* type;
 } mubsan_function_type_mismatch;
 
 void __ubsan_handle_type_mismatch_v1(mubsan_type_mismatch_info_v1* data, uintptr_t ptr) {
@@ -188,12 +186,11 @@ void __ubsan_handle_builtin_unreachable(mubsan_unreachable* data) {
                data->loc.line,
                data->loc.col);
 }
-void __ubsan_handle_function_type_mismatch(mubsan_function_type_mismatch* data) {
-    mubsan_log("mubsan @ %s:%d:%d: function type mismatch, expected %s but got %s at address %lx\n",
+void __ubsan_handle_function_type_mismatch(mubsan_function_type_mismatch* data, void* function) {
+    mubsan_log("mubsan @ %s:%u:%u: function type mismatch, for type %s at address 0x%lx\n",
                data->loc.file,
                data->loc.line,
                data->loc.col,
-               data->expected_type->name,
-               data->actual_type->name,
-               data->function);
+               data->type->name,
+               function);
 }
