@@ -1,4 +1,4 @@
-CC = gcc 
+CC = cc 
 CFLAGS = -std=c11 -Wno-builtin-declaration-mismatch
 OUT = mubsantest 
 CFILES = $(shell find . -type f -name '*.c')

@@ -1,15 +1,17 @@
 # mubsan
 
-Minimal implementation of UBSAN, which can be utilized inside kernels.
+Minimal implementation of UBSAN, which can be utilized inside freestanding environments.
 
 ## Note
 
-**I understand some of the code is a bit repetitive and an eyesore, I'm currently thinking of ways to reduce the repetitive nature of the code, while also making sure it doesn't over complicated it**
+**Not all of the handlers are implemented, only the major ones.**
 
-This isn't complete yet, however if you want to test it, fork the repository and run:
+To test the project on Linux or macOS, clone the repository and run.
 
 ```bash
 $ make
+$ ./mubsantest
+mubsan @ test.c:21:8: array out of bounds, for type 'int [4]', by index type 'int' 4
 ```
 
 ## Usage
@@ -23,13 +25,12 @@ int mubsan_log(const char* format, ...) {
 }
 ```
 
-This function should accepting a formatted string and print it to the screen, however, how you implement it is up to you.
+This function should work like `printf`.
 
-Running the test with the aforementioned instructions will yield this output, then exit:
 
-```
-mubsan @ test.c:21:8: array out of bounds, for type 'int [4]', by index type 'int' 4
-```
+## Dependencies
+
+`mubsan.c` depends on `stdint.h`.
 
 ## Credit
 
